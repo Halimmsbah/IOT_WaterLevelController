@@ -5,12 +5,12 @@ import { userModel } from '../../../database/models/user.model.js'
 import { AppError } from '../../utils/AppError.js'
 import nodemailer from 'nodemailer';
 import crypto from 'crypto';
+import { sendEmail } from '../../services/email/sendEmail.js';
 
 export const signup = async (req, res) => {
 	let user = new userModel(req.body)
 	await user.save()
-	let token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_KEY)
-	res.json({ message: 'Signed up successfully' })
+	res.json({ message: 'Signed up successfully', user: { name: user.name, email: user.email } })
 }
 
 export const signin = catchAsyncError(async (req, res, next) => {
@@ -57,32 +57,42 @@ export const changePassword = catchAsyncError(async (req, res, next) => {
 	if (user && bcrypt.compareSync(req.body.password, user.password)) {
 		let token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_KEY)
 		await userModel.findByIdAndUpdate(req.params.id, { password: req.body.newPassword, passwordChanghedAt: Date.now() })
+
+        await sendEmail({
+            email: user.email,
+            subject: 'Password Changed Successfully',
+            message: 'Your password has been changed successfully. If you did not perform this action, please contact support immediately.'
+        });
+
 		res.json({ message: 'Signed in successfully', token })
+		return;
 	}
 	next(new AppError('Invalid credentials', 408))
 })
 
 
 
-// إرسال رابط الاستعادة إلى الإيميل
 export const forgotPassword = catchAsyncError(async (req, res, next) => {
 	const user = await userModel.findOne({ email: req.body.email });
 	if (!user) return next(new AppError('No user with that email', 404));
   
-	// إنشاء توكن مؤقت
 	const resetToken = user.createPasswordResetToken();
 	await user.save({ validateBeforeSave: false });
   
-	// إرسال الإيميل
 	const resetURL = `http://localhost:5500/forget.html?token=${resetToken}`;
 	
-	const message = `Forgot your password? Submit a request with your new password to: ${resetURL}`;
-	
+	const htmlMessage = `
+	  <h2>Reset Your Password</h2>
+	  <p>You requested to reset your password. Click the button below to set a new password:</p>
+	  <a href="${resetURL}" style="display:inline-block;padding:10px 20px;background:#007bff;color:#fff;text-decoration:none;border-radius:5px;">Change Password</a>
+	  <p>If you did not request this, please ignore this email.</p>
+	`;
+
 	try {
 	  await sendEmail({
 		email: user.email,
-		subject: 'Your password reset token (valid for 10 min)',
-		message
+		subject: 'Password Reset Request',
+		message: htmlMessage
 	  });
   
 	  res.json({ message: 'Token sent to email!' });
@@ -95,15 +105,12 @@ export const forgotPassword = catchAsyncError(async (req, res, next) => {
 	}
   });
   
-  // تحديث كلمة المرور
   export const resetPassword = catchAsyncError(async (req, res, next) => {
-	// 1. تشفير التوكن
 	const hashedToken = crypto
 	  .createHash('sha256')
 	  .update(req.params.token)
 	  .digest('hex');
   
-	// 2. التحقق من التوكن
 	const user = await userModel.findOne({
 	  passwordResetToken: hashedToken,
 	  passwordResetExpires: { $gt: Date.now() }
@@ -111,13 +118,11 @@ export const forgotPassword = catchAsyncError(async (req, res, next) => {
   
 	if (!user) return next(new AppError('Token is invalid or has expired', 400));
   
-	// 3. تحديث كلمة المرور
 	user.password = req.body.password;
 	user.passwordResetToken = undefined;
 	user.passwordResetExpires = undefined;
 	await user.save();
   
-	// 4. تسجيل الدخول التلقائي
 	const token = jwt.sign({ id: user._id }, process.env.JWT_KEY, {
 	  expiresIn: process.env.JWT_EXPIRES_IN
 	});

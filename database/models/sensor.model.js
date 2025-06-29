@@ -8,6 +8,7 @@ const sensorSchema = new mongoose.Schema({
   pumpState: { type: String, enum: ['ON', 'OFF'], default: 'OFF' },
   pump2State: { type: String, enum: ['ON', 'OFF'], default: 'OFF' },
   solenoidValveState: { type: String, enum: ['ON', 'OFF'], default: 'OFF' },
+  waterSourceStatus: { type: Boolean, required: true }, // <-- تم وضعها هنا بشكل صحيح
   status: { type: String, enum: ['normal', 'warning', 'danger'], default: 'normal' },
   recordedAt: { type: Date, default: Date.now }
 }, { timestamps: true });

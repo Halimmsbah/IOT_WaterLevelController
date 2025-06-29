@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>Water Control System</title>
   <meta name="description" content="Water monitoring and control system">
   <meta name="keywords" content="water, control, monitoring">
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="assets/css/style-2.css" rel="stylesheet">
-
+  <link href="assets/css/main.css" rel="stylesheet">
   <style>
     :root {
       --success-color: #28a745;
@@ -30,11 +22,9 @@
       --info-color: #17a2b8;
       --pollution-color: #8a2be2;
     }
-    
     body {
       font-family: 'Roboto', sans-serif;
     }
-    
     .water-level-display {
       position: relative;
       width: 100%;
@@ -44,7 +34,6 @@
       margin: 20px 0;
       overflow: hidden;
     }
-    
     .water-level-bar {
       position: absolute;
       bottom: 0;
@@ -52,7 +41,6 @@
       background-color: #1e90ff;
       transition: height 1s ease;
     }
-    
     .water-level-text {
       position: absolute;
       top: 50%;
@@ -62,7 +50,6 @@
       font-weight: bold;
       color: #333;
     }
-    
     .control-btn {
       width: 100%;
       padding: 12px;
@@ -74,52 +61,43 @@
       cursor: pointer;
       transition: all 0.3s;
     }
-    
     .btn-on {
       background-color: var(--success-color);
     }
-    
     .btn-off {
       background-color: var(--danger-color);
     }
-    
     .alert-item {
       padding: 10px;
       margin: 5px 0;
       border-radius: 5px;
       background-color: #f8f9fa;
     }
-    
     .alert-success {
       background-color: #d4edda;
       color: #155724;
       border-left: 5px solid var(--success-color);
     }
-    
     .alert-danger {
       background-color: #f8d7da;
       color: #721c24;
       border-left: 5px solid var(--danger-color);
     }
-    
     .alert-warning {
       background-color: #fff3cd;
       color: #856404;
       border-left: 5px solid var(--warning-color);
     }
-    
     .alert-info {
       background-color: #d1ecf1;
       color: #0c5460;
       border-left: 5px solid var(--info-color);
     }
-    
     .alert-pollution {
       background-color: #e9d8fd;
       color: var(--pollution-color);
       border-left: 5px solid var(--pollution-color);
     }
-    
     #danger-modal {
       position: fixed;
       top: 0;
@@ -132,7 +110,6 @@
       align-items: center;
       z-index: 1000;
     }
-    
     .modal-content {
       background-color: white;
       padding: 20px;
@@ -141,25 +118,21 @@
       max-width: 500px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
-    
     .last-update {
       font-size: 12px;
       color: #6c757d;
       text-align: right;
       margin-top: 10px;
     }
-    
     .spinner {
       animation: spin 1s linear infinite;
       display: inline-block;
       margin-right: 5px;
     }
-    
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-    
     .status-indicator {
       padding: 10px;
       border-radius: 5px;
@@ -168,43 +141,63 @@
       font-weight: bold;
       border-left: 5px solid transparent;
     }
-    
     .control {
       margin: 10px 0;
     }
-    
     .parameters {
       margin: 15px 0;
     }
-    
     .parameter {
       padding: 8px 0;
       border-bottom: 1px solid #eee;
     }
+    .water-source-indicator {
+  padding: 8px;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.water-source-available {
+  background-color: #d4edda;
+  color: #155724;
+  border-left: 4px solid var(--success-color);
+}
+
+.water-source-unavailable {
+  background-color: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid var(--danger-color);
+  animation: pulse 2s infinite;
+}
+
   </style>
 </head>
-
 <body class="index-page">
-
-  <header id="header" class="header d-flex align-items-center fixed-top">
+  <header id="header" class="header d-flex align-items-center fixed-top" style="background-color: rgb(19 35 63 / 90%);">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
       <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <img src="assets/img/water-logo-drop-7.png" alt="System Logo">
-        <h1 class="sitename">Water Control System</h1>
+        <img src="assets/img/water-logo-drop-7.png" alt="">
+        <h1 class="sitename">water conroller</h1>
       </a>
-
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="home.html" class="active">Dashboard</a></li>
+          <li><a href="home.html" class="active">Home</a></li>
           <li><a href="about2.html">About</a></li>
+          <li><a href="services.html">Services</a></li>   
           <li><a href="teamMembers.html">Team</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="help.html">help</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
+      <a class="btn-getstarted" href="login.html">Get Started</a>
     </div>
   </header>
-
+  
   <main class="main">
     <section id="hero" class="hero section dark-background">
       <div class="container" style="padding-bottom: 4%;">
@@ -213,7 +206,6 @@
             <h1>Tank Status</h1>
             <p>Real-time water tank monitoring and control system</p>
           </div>
-
           <div class="col-lg-6 order-1 order-lg-2 hero-img">
             <div class="card water-level">
               <header class="header2">
@@ -223,6 +215,10 @@
               <div class="water-level-display">
                 <div class="water-level-bar" style="height: 0%;"></div>
                 <span class="water-level-text">0%</span>
+              </div>
+              <div class="water-source-indicator" id="water-source-indicator">
+                <i class="bi bi-droplet-fill"></i>
+                <span>Water Source: Checking...</span>
               </div>
               <div class="status-indicator" id="status-alert">System normal</div>
               <div class="control">
@@ -236,14 +232,12 @@
           </div>
         </div>
       </div>
-
       <div class="container" style="padding-bottom: 4%;">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
             <h1>Secondary Controls</h1>
             <p>Secondary pump and drain valve control</p>
           </div>
-
           <div class="col-lg-6 order-1 order-lg-2 hero-img">
             <div class="card water-level">
               <header class="header2">
@@ -260,7 +254,6 @@
           </div>
         </div>
       </div>
-
       <div class="container" style="padding-bottom: 4%;">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -278,9 +271,6 @@
                   <span>Temperature: <span class="temperature-value">0°C</span></span>
                 </div>
                 <div class="parameter">
-                  <span>Humidity: <span class="humidity-value">0%</span></span>
-                </div>
-                <div class="parameter">
                   <span>Turbidity: <span class="turbidity-value">0 NTU</span></span>
                 </div>
               </div>
@@ -289,7 +279,6 @@
           </div>
         </div>
       </div>
-
       <div class="container" style="padding-bottom: 4%;">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
@@ -312,7 +301,6 @@
       </div>
     </section>
   </main>
-
   <footer id="footer" class="footer dark-background">
     <div class="container footer-top">
       <div class="row gy-4">
@@ -325,32 +313,23 @@
       </div>
     </div>
   </footer>
-
-  <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
-
-  <!-- Main JS Script -->
   <script>
-    // Global variables
-    const POLLUTION_THRESHOLD = 50;
+    const POLLUTION_THRESHOLD = 250;
     let currentMode = localStorage.getItem('currentMode') || 'manual';
+    // Initialize states as strings ("ON" or "OFF") based on localStorage
     let pumpState = localStorage.getItem('pumpState') || 'OFF';
     let pump2State = localStorage.getItem('pump2State') || 'OFF';
     let solenoidValveState = localStorage.getItem('solenoidValveState') || 'OFF';
     let lastAlertTime = null;
     let lastPollutionAlertTime = null;
-    
-    // API Configuration
     const API_BASE_URL = 'http://localhost:4000/api/v1/sensor';
-    const refreshInterval = 3000; // 3 seconds
-    
-    // DOM Elements
+    const refreshInterval = 3000;
     const elements = {
       waterLevelBar: document.querySelector('.water-level-bar'),
       waterLevelText: document.querySelector('.water-level-text'),
       temperatureValue: document.querySelector('.temperature-value'),
-      humidityValue: document.querySelector('.humidity-value'),
       turbidityValue: document.querySelector('.turbidity-value'),
       statusAlert: document.getElementById('status-alert'),
       alertList: document.getElementById('alert-list'),
@@ -362,130 +341,108 @@
         valve: document.getElementById('valve-button')
       }
     };
-    
-    // Initialize the application
     document.addEventListener('DOMContentLoaded', () => {
-      console.log('Water Control System initialized');
-      
-      // Initialize UI with saved states
       updateButtonStates();
-      
-      // Setup event listeners
       setupEventListeners();
-      
-      // Initial data fetch
       fetchRealTimeData();
-      
-      // Start auto-refresh
       startAutoRefresh();
-      
-      // Add initial alert
       addAlert('System initialized successfully', 'info');
     });
-    
-    // Setup all event listeners
     function setupEventListeners() {
       if (elements.buttons.mode) {
         elements.buttons.mode.addEventListener('click', toggleMode);
-        console.log('Mode button listener initialized');
       }
-      
       if (elements.buttons.pump) {
         elements.buttons.pump.addEventListener('click', togglePump);
-        console.log('Main pump button listener initialized');
       }
-      
       if (elements.buttons.pump2) {
         elements.buttons.pump2.addEventListener('click', togglePump2);
-        console.log('Secondary pump button listener initialized');
       }
-      
       if (elements.buttons.valve) {
         elements.buttons.valve.addEventListener('click', toggleSolenoidValve);
-        console.log('Valve button listener initialized');
       }
     }
-    
-    // Fetch real-time data from API
     async function fetchRealTimeData() {
-      console.log('Fetching sensor data...');
-      
       try {
         const response = await fetch(`${API_BASE_URL}/realtime`);
-        
         if (!response.ok) {
           throw new Error(`Network error: ${response.status}`);
         }
-        
         const data = await response.json();
-        
         if (data.success) {
-          console.log('Data received:', data.data);
           updateUI(data.data);
           checkForAlerts(data.data);
           updateLastUpdateTime(data.data.lastUpdate);
         } else {
           throw new Error('Server returned unsuccessful response');
         }
-        
         return data;
       } catch (error) {
-        console.error('Failed to fetch data:', error);
         addAlert(`Data update failed: ${error.message}`, 'danger');
         return null;
       }
     }
-    
-    // Update UI with new data
+    // نضيف دالة جديدة للتحقق من مصدر المياه
+    async function checkWaterSource() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/water-source`);
+        const data = await response.json();
+        
+        if (data.alert) {
+          showDangerAlert(data.alert);
+          addAlert(data.alert, 'danger');
+          
+          // تعطيل المضخة إذا لم يكن هناك مصدر مياه
+          if (pumpState === 'ON') {
+            await togglePump();
+          }
+        }
+      } catch (error) {
+        console.error('Failed to check water source:', error);
+      }
+    }
+
+    // نعدل دالة startAutoRefresh لاستدعاء الفحص الجديد
+    function startAutoRefresh() {
+      setInterval(async () => {
+        await fetchRealTimeData();
+        await checkWaterSource(); // نضيف هذا السطر
+      }, refreshInterval);
+    }
     function updateUI(data) {
-      if (!data) return;
-      
-      // Update water level
-      if (data.waterLevel !== undefined) {
+    if (!data) return;
+
+    // تحديث مؤشر مصدر المياه
+    const waterSourceIndicator = document.getElementById('water-source-indicator');
+    if (waterSourceIndicator) {
+        if (data.waterSourceStatus) {
+            waterSourceIndicator.className = 'water-source-indicator water-source-available';
+            waterSourceIndicator.innerHTML = `<i class="bi bi-droplet-fill"></i> <span>Water Source: Available</span>`;
+        } else {
+            waterSourceIndicator.className = 'water-source-indicator water-source-unavailable';
+            waterSourceIndicator.innerHTML = `<i class="bi bi-droplet-fill"></i> <span>WARNING: No Water Source!</span>`;
+            if (!document.getElementById('danger-modal')) {
+                showDangerAlert('EMERGENCY: No water source detected!');
+            }
+        }
+    }
+
+    if (data.waterLevel !== undefined) {
         const waterLevel = Math.min(100, Math.max(0, data.waterLevel));
         elements.waterLevelBar.style.height = `${waterLevel}%`;
         elements.waterLevelText.textContent = `${waterLevel}%`;
-      }
-      
-      // Update temperature
-      if (data.temperature !== undefined) {
-        elements.temperatureValue.textContent = `${data.temperature.toFixed(1)}°C`;
-      }
-      
-      // Update humidity
-      if (data.humidity !== undefined) {
-        elements.humidityValue.textContent = `${data.humidity.toFixed(1)}%`;
-      }
-      
-      // Update turbidity
-      if (data.turbidity !== undefined) {
-        elements.turbidityValue.textContent = `${data.turbidity} NTU`;
-      }
-      
-      // Update device states only if they're different from our local state
-      // This prevents flickering when we have manual control
-      if (data.pumpState !== undefined && currentMode === 'automatic') {
-        pumpState = data.pumpState;
-        localStorage.setItem('pumpState', pumpState);
-      }
-      
-      if (data.pump2State !== undefined && currentMode === 'automatic') {
-        pump2State = data.pump2State;
-        localStorage.setItem('pump2State', pump2State);
-      }
-      
-      if (data.solenoidValveState !== undefined && currentMode === 'automatic') {
-        solenoidValveState = data.solenoidValveState;
-        localStorage.setItem('solenoidValveState', solenoidValveState);
-      }
-      
-      // Update buttons
-      updateButtonStates();
     }
-    
-    // Update button states based on current device states
+    if (data.temperature !== undefined) {
+        elements.temperatureValue.textContent = `${data.temperature.toFixed(1)}°C`;
+    }
+    if (data.turbidity !== undefined) {
+        elements.turbidityValue.textContent = `${data.turbidity} NTU`;
+    }
+
+    // تحديث حالة الأزرار بناءً على الحالة المحلية أولاً، ثم القيم من Firebase لو مفيش تغييرات محلية
+    updateButtonStates();
+}
     function updateButtonStates() {
-      // Mode button
       if (elements.buttons.mode) {
         elements.buttons.mode.textContent = currentMode === 'manual' 
           ? 'Switch to Auto Mode' 
@@ -494,42 +451,31 @@
           ? '#17a2b8' 
           : '#6c757d';
       }
-      
-      // Main pump button
       if (elements.buttons.pump) {
         elements.buttons.pump.textContent = pumpState === 'ON' 
           ? 'Turn Off Main Pump' 
           : 'Turn On Main Pump';
         elements.buttons.pump.className = `control-btn ${pumpState === 'ON' ? 'btn-on' : 'btn-off'}`;
-        elements.buttons.pump.disabled = false;
+        elements.buttons.pump.disabled = currentMode === 'automatic';
       }
-      
-      // Secondary pump button
       if (elements.buttons.pump2) {
         elements.buttons.pump2.textContent = pump2State === 'ON' 
           ? 'Turn Off Secondary Pump' 
           : 'Turn On Secondary Pump';
         elements.buttons.pump2.className = `control-btn ${pump2State === 'ON' ? 'btn-on' : 'btn-off'}`;
-        elements.buttons.pump2.disabled = false;
+        elements.buttons.pump2.disabled = currentMode === 'automatic';
       }
-      
-      // Solenoid valve button
       if (elements.buttons.valve) {
         elements.buttons.valve.textContent = solenoidValveState === 'ON' 
           ? 'Close Drain Valve' 
           : 'Open Drain Valve';
         elements.buttons.valve.className = `control-btn ${solenoidValveState === 'ON' ? 'btn-on' : 'btn-off'}`;
-        elements.buttons.valve.disabled = false;
+        elements.buttons.valve.disabled = currentMode === 'automatic';
       }
     }
-    
-    // Control device function
     async function controlDevice(device, state) {
-      console.log(`Attempting to ${state ? 'START' : 'STOP'} ${device}`);
-      
       try {
         setButtonsLoading(true);
-        
         const response = await fetch(`${API_BASE_URL}/control`, {
           method: 'POST',
           headers: {
@@ -540,42 +486,32 @@
             state: state
           }),
         });
-
         if (!response.ok) {
           const errorData = await response.json();
-          console.error("Error details:", errorData);
           throw new Error(errorData.message || 'Control failed');
         }
-
         const result = await response.json();
-        console.log("Control successful:", result);
-        
         return result;
       } catch (error) {
-        console.error(`Control failed for ${device}:`, error);
         addAlert(`FAILED to control ${device}: ${error.message}`, 'danger');
         throw error;
       } finally {
         setButtonsLoading(false);
       }
     }
-    
-    // Disable/enable buttons during operations
     function setButtonsLoading(state) {
       const buttons = [
         elements.buttons.pump,
         elements.buttons.pump2,
         elements.buttons.valve
       ];
-      
       buttons.forEach(btn => {
         if (btn) {
-          btn.disabled = state;
+          btn.disabled = state || currentMode === 'automatic';
           if (state) {
             const originalText = btn.textContent;
             btn.innerHTML = `<i class="bi bi-arrow-repeat spinner"></i> ${originalText}`;
           } else {
-            // Restore original text based on current state
             if (btn.id === 'pump-button') {
               btn.innerHTML = pumpState === 'ON' ? 'Turn Off Main Pump' : 'Turn On Main Pump';
             } else if (btn.id === 'pump2-button') {
@@ -587,111 +523,70 @@
         }
       });
     }
-    
-    // Toggle functions for devices
     async function togglePump() {
       try {
         const newState = pumpState === 'OFF';
-        console.log(`Toggling main pump from ${pumpState} to ${newState ? 'ON' : 'OFF'}`);
-        
         const result = await controlDevice('pump', newState);
-        
-        // Only update local state if control was successful
         pumpState = newState ? 'ON' : 'OFF';
         localStorage.setItem('pumpState', pumpState);
-        
         updateButtonStates();
-        
-        // Add to alert log
         addAlert(`Main Pump ${newState ? 'STARTED' : 'STOPPED'}`, newState ? 'success' : 'info');
-        
         return result;
       } catch (error) {
-        console.error("Failed to toggle pump:", error);
-        // State will remain unchanged on error
-        updateButtonStates(); // Refresh to show actual state
+        updateButtonStates();
       }
     }
-
     async function togglePump2() {
       try {
         const newState = pump2State === 'OFF';
-        console.log(`Toggling secondary pump from ${pump2State} to ${newState ? 'ON' : 'OFF'}`);
-        
         const result = await controlDevice('pump2', newState);
-        
         pump2State = newState ? 'ON' : 'OFF';
         localStorage.setItem('pump2State', pump2State);
-        
         updateButtonStates();
         addAlert(`Secondary Pump ${newState ? 'STARTED' : 'STOPPED'}`, newState ? 'success' : 'info');
-        
         return result;
       } catch (error) {
-        console.error("Failed to toggle secondary pump:", error);
-        updateButtonStates(); // Refresh to show actual state
+        updateButtonStates();
       }
     }
-
     async function toggleSolenoidValve() {
       try {
         const newState = solenoidValveState === 'OFF';
-        console.log(`Toggling valve from ${solenoidValveState} to ${newState ? 'ON' : 'OFF'}`);
-        
         const result = await controlDevice('solenoidValve', newState);
-        
         solenoidValveState = newState ? 'ON' : 'OFF';
         localStorage.setItem('solenoidValveState', solenoidValveState);
-        
         updateButtonStates();
         addAlert(`Drain Valve ${newState ? 'OPENED' : 'CLOSED'}`, newState ? 'success' : 'info');
-        
         return result;
       } catch (error) {
-        console.error("Failed to toggle valve:", error);
-        updateButtonStates(); // Refresh to show actual state
+        updateButtonStates();
       }
     }
-    
     function toggleMode() {
       currentMode = currentMode === 'manual' ? 'automatic' : 'manual';
       localStorage.setItem('currentMode', currentMode);
-      
       if (currentMode === 'automatic') {
-        // When switching to auto, fetch the current state from server
         fetchRealTimeData();
       }
-      
       addAlert(`Switched to ${currentMode === 'manual' ? 'Manual' : 'Auto'} mode`, 'info');
       updateButtonStates();
     }
-    
-    // Check for alerts based on sensor data
     function checkForAlerts(data) {
       const now = new Date().toISOString();
-      
-      // Critical water level alerts
       if (data.waterLevel < 10 && lastAlertTime !== now) {
         showDangerAlert('CRITICAL WATER LEVEL!');
         addAlert('WARNING: Water level critically low!', 'danger');
         lastAlertTime = now;
       }
-      
-      // Pollution alerts
       if (data.turbidity > POLLUTION_THRESHOLD && lastPollutionAlertTime !== now) {
         showDangerAlert('HIGH POLLUTION DETECTED!');
         addAlert(`WARNING: High pollution (${data.turbidity} NTU)`, 'pollution');
         lastPollutionAlertTime = now;
       }
-      
-      // Update status indicator
       updateStatusAlert(data);
     }
-    
-    // Update status alert
     function updateStatusAlert(data) {
       if (!elements.statusAlert) return;
-      
       if (data.waterLevel < 10 || data.turbidity > POLLUTION_THRESHOLD) {
         elements.statusAlert.textContent = 'CRITICAL STATUS!';
         elements.statusAlert.className = 'status-indicator alert-danger';
@@ -703,68 +598,43 @@
         elements.statusAlert.className = 'status-indicator alert-success';
       }
     }
-    
-    // Add alert to alert list
     function addAlert(message, type) {
       if (!elements.alertList) return;
-      
       const alertItem = document.createElement('div');
       alertItem.className = `alert-item alert-${type}`;
-      
       const time = new Date().toLocaleTimeString();
       alertItem.innerHTML = `<span>${time} - ${message}</span>`;
-      
       elements.alertList.insertBefore(alertItem, elements.alertList.firstChild);
-      
-      // Keep only the last 10 alerts
       if (elements.alertList.children.length > 10) {
         elements.alertList.removeChild(elements.alertList.lastChild);
       }
     }
-    
-    // Show danger alert modal
     function showDangerAlert(message) {
       const modal = document.createElement('div');
-      modal.id = 'danger-modal';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <span class="close-btn" onclick="this.parentElement.parentElement.remove()">&times;</span>
-          <i class="bi bi-exclamation-triangle-fill" style="color: red; font-size: 3rem;"></i>
-          <h2>EMERGENCY ALERT!</h2>
-          <p>${message}</p>
-          <p>Immediate action required</p>
-        </div>
-      `;
-      
+      // modal.id = 'danger-modal';
+      // modal.innerHTML = `
+      //   <div class="modal-content">
+      //     <span class="close-btn" onclick="this.parentElement.parentElement.remove()">&times;</span>
+      //     <i class="bi bi-exclamation-triangle-fill" style="color: red; font-size: 3rem;"></i>
+      //     <h2>EMERGENCY ALERT!</h2>
+      //     <p>${message}</p>
+      //     <p>Immediate action required</p>
+      //   </div>
+      // `;
       document.body.appendChild(modal);
-      
-      // Auto-remove after 10 seconds
       setTimeout(() => {
         if (document.body.contains(modal)) {
           document.body.removeChild(modal);
         }
       }, 10000);
     }
-    
-    // Update last update time
     function updateLastUpdateTime(timestamp) {
       if (!timestamp || !elements.lastUpdateElements) return;
-      
       const date = new Date(timestamp);
       const timeString = date.toLocaleTimeString();
-      
       elements.lastUpdateElements.forEach(el => {
         el.textContent = `Last update: ${timeString}`;
       });
-    }
-    
-    // Start auto-refresh
-    function startAutoRefresh() {
-      setInterval(async () => {
-        await fetchRealTimeData();
-      }, refreshInterval);
-      
-      console.log(`Auto-refresh enabled every ${refreshInterval/1000} seconds`);
     }
   </script>
 </body>

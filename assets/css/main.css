@@ -211,7 +211,7 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: #3d4d6a;
+  --background-color:rgb(19 35 63 / 90%);
   --heading-color: #ffffff;
   color: var(--default-color);
   background-color: var(--background-color);
@@ -1496,7 +1496,7 @@ section,
   box-shadow: none;
   border-radius: 0;
   color: var(--default-color);
-  background-color: color-mix(in srgb, var(--background-color), transparent 50%);
+ 
   border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
@@ -1535,7 +1535,7 @@ section,
 }
 
 .get-a-quote .php-email-form {
-  background: color-mix(in srgb, var(--default-color), transparent 97%);
+  background: var(--surface-color);
   padding: 30px;
   height: 100%;
 }
@@ -2798,3 +2798,30 @@ color: white;
 background-color: rgb(25, 125, 213);
 color: white;
 }
+
+
+body{
+  background-color: #0e1d34;
+}
+
+h1,h2,h3,h4,h5,h6,p{
+  color: white;
+  text-transform: capitalize;
+}
+
+.team h4{
+color: #001973;
+}
+
+.header .logo h1 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 500;
+  color: var(--heading-color);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+
+
+

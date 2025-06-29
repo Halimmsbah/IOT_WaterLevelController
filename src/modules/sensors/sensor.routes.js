@@ -3,7 +3,8 @@ import {
   getRealTimeData,
   controlDevice,
   getHistoricalData,
-  getSystemHealth
+  getSystemHealth,
+  checkWaterSource
 } from './sensor.controller.js';
 
 const sensorRouter = express.Router();
@@ -13,5 +14,5 @@ sensorRouter.get('/realtime', getRealTimeData);
 sensorRouter.post('/control', controlDevice);
 sensorRouter.get('/history', getHistoricalData);
 sensorRouter.get('/health', getSystemHealth);
-
+sensorRouter.get('/water-source', checkWaterSource);
 export default sensorRouter;
